@@ -4,16 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>rw.tutoria.lesson</groupId>
-    <artifactId>tutoria-lesson</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>rw.tutoria.post</groupId>
+    <artifactId>tutoria-post</artifactId>
+    <version>1.0</version>
     <name>${project.artifactId}-${project.version}</name>
     <description>Tutoria Lesson Service</description>
     <packaging>pom</packaging>
 
     <modules>
-        <module>lesson-app</module>
-<!--        <module>lesson-persistence</module>-->
+        <module>post-app</module>
+        <module>post-util</module>
+        <module>post-client</module>
+        <!--        <module>lesson-persistence</module>-->
 <!--        <module>lesson-core</module>-->
 <!--        <module>lesson-entity</module>-->
 <!--        <module>lesson-utils</module>-->
@@ -21,10 +23,13 @@
     </modules>
 
     <properties>
-        <java.version>18</java.version>
+        <post.version>1.0</post.version>
+        <java.version>17</java.version>
         <spring.boot.version>2.7.5</spring.boot.version>
         <spring.restdocs.version>2.0.6.RELEASE</spring.restdocs.version>
+        <postgresql.version>42.5.0</postgresql.version>
         <lombok.version>1.18.24</lombok.version>
+        <jackson.version>2.13.4</jackson.version>
         <testcontainers.version>1.17.4</testcontainers.version>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
@@ -33,46 +38,88 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>rw.tutoria.post</groupId>
+                <artifactId>post-persistence</artifactId>
+                <version>${post.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>rw.tutoria.post</groupId>
+                <artifactId>post-core</artifactId>
+                <version>${post.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>rw.tutoria.post</groupId>
+                <artifactId>post-entity</artifactId>
+                <version>${post.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>rw.tutoria.post</groupId>
+                <artifactId>post-util</artifactId>
+                <version>${post.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>rw.tutoria.post</groupId>
+                <artifactId>post-client</artifactId>
+                <version>${post.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jdbc</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools</artifactId>
                 <version>${spring.boot.version}</version>
-                <scope>runtime</scope>
-                <optional>true</optional>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
                 <version>${spring.boot.version}</version>
-                <optional>true</optional>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring.boot.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.restdocs</groupId>
                 <artifactId>spring-restdocs-mockmvc</artifactId>
                 <version>${spring.restdocs.version}</version>
-                <scope>test</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <optional>true</optional>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${testcontainers.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.testcontainers</groupId>
