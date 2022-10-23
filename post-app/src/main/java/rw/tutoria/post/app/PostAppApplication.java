@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan("rw.tutoria.post")
-@EntityScan("rw.tutoria.post.persistence")
+@EntityScan("rw.tutoria.post")
 @EnableJpaRepositories("rw.tutoria.post.persistence")
 public class PostAppApplication {
 
