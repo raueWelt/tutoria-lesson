@@ -8,12 +8,11 @@ import rw.tutoria.post.entity.audit.DynamicAudit;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post extends DynamicAudit {
+public class Comment extends DynamicAudit {
     private long id;
+    private long postId;
     private long authorId;
     private Long parentId;
-    private String title;
-    private String metaTitle;
     private boolean published;
     private String content;
 }
